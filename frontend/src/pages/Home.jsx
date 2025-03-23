@@ -1,10 +1,11 @@
 import React from "react";
-import Header from "../components/Header";
+import { Link } from "react-router-dom";
 import { useFetchMovies } from "../hooks/useFetchMovies";
 import { useSearchMovies } from "../hooks/useSearchMovies";
 import { useGenres } from "../hooks/useGenres";
-import { Link } from "react-router-dom";
 import { useMoviesContext } from "../context/MoviesContext";
+
+import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 export default function Home() {
@@ -41,6 +42,14 @@ export default function Home() {
     setCurrentPage(pageNumber);
   };
 
+  // Função para redefinir a busca e o filtro
+  const handleReset = () => {
+    setSelectedGenre(""); // Limpa o filtro de gênero
+    setSearchQuery(""); // Limpa a busca
+    setSubmittedQuery(""); // Limpa o estado de busca submetida
+    setCurrentPage(1); // Volta para a primeira página
+  };
+
   const movies = submittedQuery ? moviesFromSearch : moviesFromFetch;
   const loading = submittedQuery ? loadingSearch : loadingFetch;
 
@@ -50,9 +59,6 @@ export default function Home() {
 
   if (loading) return <div className="container">Carregando filmes...</div>;
 
-  if (filteredMovies.length === 0)
-    return <div className="container">Nenhum filme encontrado.</div>;
-
   return (
     <div className="container">
       <Header
@@ -61,8 +67,8 @@ export default function Home() {
         handleSearchSubmit={handleSearchSubmit}
       />
 
-      {/* Filtro por gênero */}
-      <div className="container mx-auto px-10 mt-6">
+      {/* Filtro por gênero e botão de redefinir busca */}
+      <div className="container mx-auto px-10 mt-6 flex items-center space-x-4">
         <select
           onChange={handleGenreChange}
           value={selectedGenre}
@@ -77,7 +83,27 @@ export default function Home() {
             </option>
           ))}
         </select>
+
+        {/* Botão de redefinir busca */}
+        <button
+          onClick={handleReset}
+          className="px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition duration-300"
+        >
+          Redefinir busca
+        </button>
       </div>
+
+      {/* Verifica se não há filmes após o filtro de gênero */}
+      {filteredMovies.length === 0 && selectedGenre && (
+        <div className="w-full h-full mx-auto my-8 p-8 bg-white rounded-md">
+          <h1 className="text-2xl text-center font-bold text-gray-800">
+            Nenhum filme encontrado para este gênero.
+          </h1>
+          <p className="text-gray-500 text-center">
+            Selecione outra categoria ou retorne a tela inicial.
+          </p>
+        </div>
+      )}
 
       {/* Grid de filmes */}
       <div className="container mx-auto px-10">
