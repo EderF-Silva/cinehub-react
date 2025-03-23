@@ -10,7 +10,7 @@ export default function Favorites() {
     <div className="container">
       <Header />
 
-      <div className="w-full h-full mx-auto my-8 p-8 bg-white rounded-md shadow-md">
+      <div className="w-full h-full mx-auto my-8 p-8 bg-white rounded-md">
         <h1 className="text-2xl text-center font-bold text-gray-800">
           Meus Favoritos
         </h1>
