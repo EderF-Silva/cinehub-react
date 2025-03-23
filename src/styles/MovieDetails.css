@@ -1,0 +1,41 @@
+.movie-details-container {
+  padding: 2rem;
+  padding-top: 110px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.back-link {
+  text-decoration: none;
+  color: #555;
+}
+
+.details-content {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+  gap: 2rem;
+}
+
+.movie-poster {
+  border-radius: 10px;
+  max-width: 300px;
+  width: 100%;
+}
+
+.movie-info {
+  flex: 1;
+}
+
+.movie-info h1 {
+  margin-bottom: 0.5rem;
+}
+
+.movie-info p {
+  margin-bottom: 0.5rem;
+}
+
+.movie-tagline {
+  font-style: italic;
+  color: #666;
+}
