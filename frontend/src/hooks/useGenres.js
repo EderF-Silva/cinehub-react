@@ -5,7 +5,7 @@ export function useGenres() {
 
   useEffect(() => {
     // Faz a requisição ao backend
-    fetch("http://localhost:5000/api/genres")
+    fetch("http://localhost:5000/api/movies/genres")
       .then((res) => res.json())
       .then((data) => {
         setGenres(data.genres);

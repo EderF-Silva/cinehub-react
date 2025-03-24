@@ -10,7 +10,7 @@ export function useSearchMovies(query, page = 1) {
 
     const fetchMovies = async () => {
       const res = await fetch(
-        `http://localhost:5000/api/search?query=${query}&page=${page}`
+        `http://localhost:5000/api/movies/search?query=${query}&page=${page}`
       );
       const json = await res.json();
       setData(json.results);

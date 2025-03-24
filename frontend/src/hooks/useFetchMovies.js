@@ -9,7 +9,7 @@ export function useFetchMovies(page = 1) {
     const fetchMovies = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/api/movies?page=${page}`
+          `http://localhost:5000/api/movies/getMovies?page=${page}`
         );
         const json = await res.json();
         setData(json.results);

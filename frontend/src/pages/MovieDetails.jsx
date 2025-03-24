@@ -25,7 +25,7 @@ export default function MovieDetails() {
 
   useEffect(() => {
     axios
-      .get(`${BASE_URL}/movie/${id}`)
+      .get(`${BASE_URL}/movies/movie/${id}`)
       .then((res) => {
         setMovie(res.data);
         setLoading(false);
