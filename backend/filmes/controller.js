@@ -5,8 +5,9 @@ const service = require('./service.js');
 
 exports.getMovies = async (req, res) => {
     try {
-        
-        const filmes = await service.getMovies();
+        const page = req.query.page || 1;
+
+        const filmes = await service.getMovies(page);
 
         res.json(filmes);
     } catch (error) {
