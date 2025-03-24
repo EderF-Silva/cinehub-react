@@ -2,12 +2,12 @@ const TMDB_API_KEY = process.env.TMDB_API_KEY;
 const axios = require("axios");
 
 
-exports.getMovies = () => {
+exports.getMovies = (page) => {
     return new Promise(async (resolve, reject) => {
         try {
 
             const response = await axios.get(
-                `https://api.themoviedb.org/3/movie/popular?api_key=${ TMDB_API_KEY }&language=pt-BR`
+                `https://api.themoviedb.org/3/movie/popular?api_key=${TMDB_API_KEY}&language=pt-BR&page=${page}`
             );
 
             resolve(response.data);
