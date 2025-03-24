@@ -12,12 +12,15 @@ app.use(express.json());
 
 // Rota para buscar filmes populares
 app.get("/api/movies", async (req, res) => {
+  const page = req.query.page || 1; // Recebe o parâmetro `page` ou define como 1 por padrão
+
   try {
     const response = await axios.get(
-      `https://api.themoviedb.org/3/movie/popular?api_key=${TMDB_API_KEY}&language=pt-BR`
+      `https://api.themoviedb.org/3/movie/popular?api_key=${TMDB_API_KEY}&language=pt-BR&page=${page}`
     );
     res.json(response.data);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: "Erro ao buscar filmes" });
   }
 });
