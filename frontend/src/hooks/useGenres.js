@@ -4,12 +4,14 @@ export function useGenres() {
   const [genres, setGenres] = useState([]);
 
   useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/genre/movie/list?api_key=8ed200f50a6942ca5bc8b5cdec27ff22&language=pt-BR`
-    )
+    // Faz a requisição ao backend
+    fetch("http://localhost:5000/api/genres")
       .then((res) => res.json())
       .then((data) => {
         setGenres(data.genres);
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar gêneros:", error);
       });
   }, []);
 
