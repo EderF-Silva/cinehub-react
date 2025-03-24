@@ -20,9 +20,7 @@ export const MoviesProvider = ({ children }) => {
   };
 
   return (
-    <MoviesContext.Provider value={value}>
-      {children}
-    </MoviesContext.Provider>
+    <MoviesContext.Provider value={value}>{children}</MoviesContext.Provider>
   );
 };
 
