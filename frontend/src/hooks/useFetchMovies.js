@@ -7,10 +7,18 @@ export function useFetchMovies(page = 1) {
   useEffect(() => {
     setLoading(true);
     const fetchMovies = async () => {
-      const res = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=8ed200f50a6942ca5bc8b5cdec27ff22&page=${page}&language=pt-BR`);
-      const json = await res.json();
-      setData(json.results);
-      setLoading(false);
+      try {
+        const res = await fetch(
+          `http://localhost:5000/api/movies?page=${page}`
+        );
+        const json = await res.json();
+        setData(json.results);
+      } catch (error) {
+        console.error("Erro ao buscar filmes:", error);
+        setData([]); // Se der erro, define array vazio
+      } finally {
+        setLoading(false);
+      }
     };
     fetchMovies();
   }, [page]);

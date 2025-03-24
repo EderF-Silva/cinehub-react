@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import axios from "axios";
+
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faSpinner } from "@fortawesome/free-solid-svg-icons";
 
-const API_KEY = "8ed200f50a6942ca5bc8b5cdec27ff22";
-const BASE_URL = "https://api.themoviedb.org/3";
-const LANGUAGE = "pt-BR";
+const BASE_URL = "http://localhost:5000/api"; // API do backend
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -24,18 +24,31 @@ export default function MovieDetails() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=${LANGUAGE}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setMovie(data);
+    axios
+      .get(`${BASE_URL}/movie/${id}`)
+      .then((res) => {
+        setMovie(res.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar filme:", error);
         setLoading(false);
       });
   }, [id]);
 
   if (loading)
-    return <p className="container text-center">Carregando detalhes...</p>;
-  if (!movie)
-    return <p className="container text-center">Filme não encontrado.</p>;
+    return (
+      <div className="container flex justify-center items-center h-screen">
+        <FontAwesomeIcon
+          icon={faSpinner}
+          spin
+          size="3x"
+          className="text-gray-500"
+        />
+      </div>
+    );
+
+  if (!movie) return <div className="container">Filme não encontrado.</div>;
 
   return (
     <div className="container">
