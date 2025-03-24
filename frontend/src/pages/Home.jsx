@@ -57,10 +57,10 @@ export default function Home() {
     ? movies.filter((movie) => movie.genre_ids.includes(Number(selectedGenre)))
     : movies;
 
-  if (loading) return <div className="container">Carregando filmes...</div>;
+  if (loading) return <div>Carregando filmes...</div>;
 
   return (
-    <div className="container">
+    <div>
       <Header
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}

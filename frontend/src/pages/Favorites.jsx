@@ -7,7 +7,7 @@ import Footer from "../components/Footer";
 
 export default function Favorites() {
   return (
-    <div className="container">
+    <div>
       <Header />
 
       <div className="w-full h-full mx-auto my-8 p-8 bg-white rounded-md">

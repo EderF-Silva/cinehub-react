@@ -51,7 +51,7 @@ export default function MovieDetails() {
   if (!movie) return <div className="container">Filme não encontrado.</div>;
 
   return (
-    <div className="container">
+    <div>
       <Header />
 
       <div className="mx-5">
