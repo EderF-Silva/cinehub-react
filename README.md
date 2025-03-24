@@ -35,6 +35,7 @@ npm install
 ## Frontend:
 
 ```
+cd ..
 cd frontend
 npm install
 ```
@@ -52,6 +53,7 @@ TMDB_API_KEY=
 Na raiz do projeto, use o comando abaixo para rodar o frontend e o backend simultaneamente:
 
 ```
+npm install
 npm run start
 ```
 
